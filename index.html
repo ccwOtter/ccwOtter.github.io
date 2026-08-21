@@ -20,7 +20,7 @@
             height: 100vh;
             overflow-y: scroll;
             scroll-behavior: smooth;
-            /* 固定背景图 */
+            /* 浅色背景图，也可以换成纯色 */
             background-image: url('https://picsum.photos/1920/1080?random=1');
             background-size: cover;
             background-position: center;
@@ -36,15 +36,14 @@
             align-items: center;
             text-align: center;
             padding: 24px;
-            color: #fff;
         }
 
-        /* 所有页文字无框 */
+        /* 文字深色，无框 */
         .page-content {
             max-width: 90%;
             width: 100%;
             text-align: center;
-            color: #fff;
+            color: #1a1a1a;
         }
 
         .page-content h2 {
@@ -52,41 +51,43 @@
             font-weight: 300;
             letter-spacing: 2px;
             margin-bottom: 12px;
-            text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
+            color: #1a1a1a;
+            text-shadow: 0 2px 8px rgba(255, 255, 255, 0.3);
         }
 
         .page-content p {
             font-size: 18px;
             line-height: 1.8;
-            opacity: 0.9;
-            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+            opacity: 0.85;
+            color: #1a1a1a;
+            text-shadow: 0 1px 4px rgba(255, 255, 255, 0.2);
         }
 
-        /* 第一页也去掉框，文字直接显示在背景上 */
+        /* 第一页深色文字 */
         .page-1 .page-content {
-            color: #fff;
+            color: #1a1a1a;
         }
         .page-1 .page-content h2 {
-            color: #fff;
-            text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
+            color: #1a1a1a;
+            text-shadow: 0 2px 8px rgba(255, 255, 255, 0.3);
         }
         .page-1 .page-content .sub {
             font-size: 15px;
             font-weight: 400;
-            color: rgba(255, 255, 255, 0.7);
+            color: #666;
             letter-spacing: 3px;
             margin-bottom: 20px;
         }
         .page-1 .page-content .divider {
             width: 32px;
             height: 1px;
-            background: rgba(255, 255, 255, 0.4);
+            background: #ccc;
             margin: 0 auto 20px;
         }
         .page-1 .page-content .bio {
             font-size: 15px;
             line-height: 1.9;
-            color: rgba(255, 255, 255, 0.9);
+            color: #444;
             margin-bottom: 24px;
             font-weight: 300;
         }
@@ -99,7 +100,7 @@
         }
         .page-1 .page-content .links a {
             font-size: 14px;
-            color: rgba(255, 255, 255, 0.7);
+            color: #555;
             text-decoration: none;
             letter-spacing: 1px;
             transition: color 0.2s ease;
@@ -108,20 +109,20 @@
             padding-bottom: 2px;
         }
         .page-1 .page-content .links a:hover {
-            color: #fff;
-            border-bottom-color: #fff;
+            color: #000;
+            border-bottom-color: #000;
         }
         .page-1 .page-content .footer {
             font-size: 12px;
-            color: rgba(255, 255, 255, 0.4);
+            color: #bbb;
             letter-spacing: 1px;
         }
         .page-1 .page-content .footer a {
-            color: rgba(255, 255, 255, 0.4);
+            color: #bbb;
             text-decoration: none;
         }
         .page-1 .page-content .footer a:hover {
-            color: rgba(255, 255, 255, 0.8);
+            color: #888;
         }
 
         .hint {
@@ -129,7 +130,7 @@
             bottom: 30px;
             left: 50%;
             transform: translateX(-50%);
-            color: rgba(255, 255, 255, 0.5);
+            color: rgba(0, 0, 0, 0.35);
             font-size: 14px;
             letter-spacing: 2px;
             animation: bounce 2s infinite;
@@ -179,21 +180,21 @@
         <section class="page page-2">
             <div class="page-content">
                 <h2>🌄 第二页</h2>
-                <p>所有页面都是同一张固定背景图。</p>
+                <p>文字深色，背景浅色，更清爽。</p>
             </div>
         </section>
 
         <section class="page page-3">
             <div class="page-content">
                 <h2>🌿 第三页</h2>
-                <p>文字直接显示在背景上，没有框。</p>
+                <p>宽度 90%，无框，干净简洁。</p>
             </div>
         </section>
 
         <section class="page page-4">
             <div class="page-content">
                 <h2>🏔️ 第四页</h2>
-                <p>宽度 90%，清爽大气。</p>
+                <p>磁铁吸附，滚动流畅。</p>
             </div>
         </section>
 
