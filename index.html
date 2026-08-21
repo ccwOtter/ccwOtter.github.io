@@ -34,97 +34,83 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 24px;
+            padding: 40px 60px;
         }
 
-        /* 第2页及以后：宽屏 90% */
-        .page:not(.page-1) .page-content {
+        /* 所有页文字样式：大、居中、无框 */
+        .page-content {
             max-width: 90%;
             width: 100%;
             text-align: center;
             color: #1a1a1a;
         }
 
-        .page:not(.page-1) .page-content h2 {
-            font-size: 42px;
+        .page-content h2 {
+            font-size: 64px;
             font-weight: 300;
-            letter-spacing: 2px;
-            margin-bottom: 12px;
+            letter-spacing: 4px;
+            margin-bottom: 24px;
             color: #1a1a1a;
-            text-shadow: 0 2px 8px rgba(255, 255, 255, 0.3);
+            text-shadow: 0 2px 12px rgba(255, 255, 255, 0.3);
         }
 
-        .page:not(.page-1) .page-content p {
-            font-size: 18px;
-            line-height: 1.8;
+        .page-content p {
+            font-size: 24px;
+            line-height: 2;
             opacity: 0.85;
             color: #1a1a1a;
-            text-shadow: 0 1px 4px rgba(255, 255, 255, 0.2);
+            text-shadow: 0 1px 6px rgba(255, 255, 255, 0.2);
+            max-width: 800px;
+            margin: 0 auto;
         }
 
-        /* 第一页：宽屏 90%，左对齐，增加间距 */
-        .page-1 {
-            align-items: flex-start;
-            padding-left: 10%;
-        }
-
-        .page-1 .page-content {
-            max-width: 90%;
-            width: 100%;
-            text-align: left;
-            color: #1a1a1a;
-        }
-
+        /* 第一页独立样式（文字更大，间距更宽） */
         .page-1 .page-content h2 {
-            font-size: 56px;
-            font-weight: 300;
-            letter-spacing: 2px;
-            margin-bottom: 12px;
-            color: #111;
-            text-shadow: 0 2px 8px rgba(255, 255, 255, 0.3);
+            font-size: 80px;
+            letter-spacing: 6px;
+            margin-bottom: 20px;
         }
 
         .page-1 .page-content .sub {
-            font-size: 18px;
+            font-size: 22px;
             font-weight: 400;
             color: #888;
-            letter-spacing: 4px;
-            margin-bottom: 40px;
+            letter-spacing: 6px;
+            margin-bottom: 48px;
         }
 
         .page-1 .page-content .divider {
-            width: 48px;
+            width: 64px;
             height: 2px;
             background: #ccc;
-            margin: 0 0 40px 0;
+            margin: 0 auto 48px;
         }
 
         .page-1 .page-content .bio {
-            font-size: 18px;
+            font-size: 24px;
             line-height: 2.2;
             color: #444;
-            margin-bottom: 48px;
+            margin-bottom: 56px;
             font-weight: 300;
-            max-width: 600px;
         }
 
         .page-1 .page-content .links {
             display: flex;
-            justify-content: flex-start;
-            gap: 32px;
+            justify-content: center;
+            gap: 40px;
             flex-wrap: wrap;
-            margin-bottom: 48px;
+            margin-bottom: 56px;
         }
 
         .page-1 .page-content .links a {
-            font-size: 16px;
+            font-size: 18px;
             color: #555;
             text-decoration: none;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
             transition: color 0.2s ease;
             font-weight: 400;
             border-bottom: 1px solid transparent;
-            padding-bottom: 2px;
+            padding-bottom: 4px;
         }
 
         .page-1 .page-content .links a:hover {
@@ -133,9 +119,9 @@
         }
 
         .page-1 .page-content .footer {
-            font-size: 14px;
+            font-size: 16px;
             color: #bbb;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
         }
 
         .page-1 .page-content .footer a {
@@ -149,63 +135,76 @@
 
         .hint {
             position: fixed;
-            bottom: 30px;
+            bottom: 40px;
             left: 50%;
             transform: translateX(-50%);
-            color: rgba(0, 0, 0, 0.35);
-            font-size: 14px;
-            letter-spacing: 2px;
-            animation: bounce 2s infinite;
+            color: rgba(0, 0, 0, 0.3);
+            font-size: 16px;
+            letter-spacing: 3px;
+            animation: bounce 2.5s infinite;
             pointer-events: none;
             z-index: 10;
         }
 
         @keyframes bounce {
             0%, 100% { transform: translateX(-50%) translateY(0); }
-            50% { transform: translateX(-50%) translateY(8px); }
+            50% { transform: translateX(-50%) translateY(12px); }
         }
 
         @media (max-width: 768px) {
-            .page-1 {
-                padding-left: 6%;
-                padding-right: 6%;
+            .page {
+                padding: 30px 30px;
+            }
+            .page-content h2 {
+                font-size: 44px;
+            }
+            .page-content p {
+                font-size: 20px;
             }
             .page-1 .page-content h2 {
-                font-size: 40px;
+                font-size: 52px;
             }
             .page-1 .page-content .bio {
-                font-size: 16px;
-                max-width: 100%;
+                font-size: 20px;
             }
             .page-1 .page-content .links {
-                gap: 20px;
+                gap: 24px;
             }
             .page-1 .page-content .links a {
-                font-size: 14px;
+                font-size: 16px;
             }
         }
 
         @media (max-width: 480px) {
-            .page-1 {
-                padding-left: 5%;
-                padding-right: 5%;
+            .page {
+                padding: 20px 20px;
             }
-            .page-1 .page-content h2 {
+            .page-content h2 {
                 font-size: 32px;
             }
+            .page-content p {
+                font-size: 17px;
+            }
+            .page-1 .page-content h2 {
+                font-size: 38px;
+                letter-spacing: 3px;
+            }
             .page-1 .page-content .sub {
-                font-size: 15px;
-                letter-spacing: 2px;
+                font-size: 16px;
+                letter-spacing: 4px;
             }
             .page-1 .page-content .bio {
-                font-size: 15px;
-                line-height: 1.9;
+                font-size: 17px;
+                line-height: 2;
             }
             .page-1 .page-content .links {
-                gap: 14px;
+                gap: 16px;
             }
-            .page:not(.page-1) .page-content h2 {
-                font-size: 28px;
+            .page-1 .page-content .links a {
+                font-size: 14px;
+            }
+            .page-1 .page-content .footer {
+                font-size: 13px;
             }
         }
     </style>
@@ -214,7 +213,6 @@
 
     <div class="wrapper" id="wrapper">
 
-        <!-- ===== 第1页：左对齐，宽屏，间距大 ===== -->
         <section class="page page-1">
             <div class="page-content">
                 <h2>ccw Otter</h2>
@@ -239,7 +237,6 @@
             </div>
         </section>
 
-        <!-- ===== 第2页：宽屏 90% ===== -->
         <section class="page page-2">
             <div class="page-content">
                 <h2>🌄 第二页</h2>
@@ -247,7 +244,6 @@
             </div>
         </section>
 
-        <!-- ===== 第3页：宽屏 90% ===== -->
         <section class="page page-3">
             <div class="page-content">
                 <h2>🌿 第三页</h2>
@@ -255,7 +251,6 @@
             </div>
         </section>
 
-        <!-- ===== 第4页：宽屏 90% ===== -->
         <section class="page page-4">
             <div class="page-content">
                 <h2>🏔️ 第四页</h2>
