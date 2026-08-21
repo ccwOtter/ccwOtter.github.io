@@ -11,8 +11,7 @@
             box-sizing: border-box;
         }
 
-        html,
-        body {
+        html, body {
             height: 100%;
             font-family: -apple-system, 'PingFang SC', 'Segoe UI', Roboto, sans-serif;
         }
@@ -25,7 +24,6 @@
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-            /* 去掉 scroll-snap 相关属性，完全由 JS 控制 */
         }
 
         .page {
@@ -40,12 +38,12 @@
             color: #fff;
         }
 
+        /* 文字直接显示，不要框 */
         .page-content {
-            background: rgba(0, 0, 0, 0.35);
-            padding: 30px 40px;
-            border-radius: 16px;
-            backdrop-filter: blur(4px);
-            max-width: 700px;
+            max-width: 90%;
+            width: 100%;
+            text-align: center;
+            color: #fff;
         }
 
         .page-content h2 {
@@ -53,23 +51,32 @@
             font-weight: 300;
             letter-spacing: 2px;
             margin-bottom: 12px;
+            text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
         }
 
         .page-content p {
             font-size: 18px;
             line-height: 1.8;
             opacity: 0.9;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
         }
 
+        /* 第一页保留卡片样式（白底+框） */
         .page-1 .page-content {
             background: rgba(255, 255, 255, 0.92);
             backdrop-filter: none;
             color: #1a1a1a;
             box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15);
+            max-width: 520px;
+            padding: 40px 24px;
+            border-radius: 16px;
         }
 
         .page-1 .page-content h2 {
-            color: #111;
+            text-shadow: none;
+        }
+        .page-1 .page-content p {
+            text-shadow: none;
         }
 
         .page-1 .page-content .sub {
@@ -148,25 +155,14 @@
         }
 
         @keyframes bounce {
-            0%,
-            100% {
-                transform: translateX(-50%) translateY(0);
-            }
-            50% {
-                transform: translateX(-50%) translateY(8px);
-            }
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(8px); }
         }
 
         @media (max-width: 480px) {
-            .page-content h2 {
-                font-size: 28px;
-            }
-            .page-content {
-                padding: 20px;
-            }
-            .page-1 .page-content .links {
-                gap: 14px;
-            }
+            .page-content h2 { font-size: 28px; }
+            .page-1 .page-content { max-width: 100%; margin: 0 16px; padding: 30px 16px; }
+            .page-1 .page-content .links { gap: 14px; }
         }
     </style>
 </head>
@@ -201,14 +197,14 @@
         <section class="page page-2">
             <div class="page-content">
                 <h2>🌄 第二页</h2>
-                <p>滚动流畅，用力滚也不会卡住。</p>
+                <p>文字直接显示在背景上，没有框。</p>
             </div>
         </section>
 
         <section class="page page-3">
             <div class="page-content">
                 <h2>🌿 第三页</h2>
-                <p>停止后自动吸附到最近的一页。</p>
+                <p>宽度占屏幕的 90%，看起来更大气。</p>
             </div>
         </section>
 
@@ -229,13 +225,8 @@
         let isScrolling = false;
 
         wrapper.addEventListener('scroll', function() {
-            // 滚动中标记
             isScrolling = true;
-
-            // 清除之前的定时器
             clearTimeout(timer);
-
-            // 滚动停止 150ms 后执行吸附
             timer = setTimeout(function() {
                 isScrolling = false;
                 snapToNearest();
@@ -257,7 +248,6 @@
                 }
             });
 
-            // 如果距离小于屏幕高度的 40%，就吸附过去，否则不管（让用户自由停在中间）
             const threshold = window.innerHeight * 0.4;
             if (closestDist < threshold) {
                 wrapper.scrollTo({
@@ -267,7 +257,6 @@
             }
         }
 
-        // 窗口大小变化时重新计算（防止布局偏移）
         let resizeTimer;
         window.addEventListener('resize', function() {
             clearTimeout(resizeTimer);
