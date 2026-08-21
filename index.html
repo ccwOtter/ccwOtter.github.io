@@ -11,7 +11,8 @@
             box-sizing: border-box;
         }
 
-        html, body {
+        html,
+        body {
             height: 100%;
             font-family: -apple-system, 'PingFang SC', 'Segoe UI', Roboto, sans-serif;
         }
@@ -19,11 +20,12 @@
         .wrapper {
             height: 100vh;
             overflow-y: scroll;
-            scroll-snap-type: y proximity;   /* 改成 proximity，滚动流畅，停止时再吸附 */
+            scroll-behavior: smooth;
             background-image: url('https://picsum.photos/1920/1080?random=1');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
+            /* 去掉 scroll-snap 相关属性，完全由 JS 控制 */
         }
 
         .page {
@@ -35,7 +37,6 @@
             align-items: center;
             text-align: center;
             padding: 24px;
-            scroll-snap-align: start;
             color: #fff;
         }
 
@@ -60,7 +61,6 @@
             opacity: 0.9;
         }
 
-        /* 第一页：保留你的个人卡片样式 */
         .page-1 .page-content {
             background: rgba(255, 255, 255, 0.92);
             backdrop-filter: none;
@@ -148,20 +148,31 @@
         }
 
         @keyframes bounce {
-            0%, 100% { transform: translateX(-50%) translateY(0); }
-            50% { transform: translateX(-50%) translateY(8px); }
+            0%,
+            100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            50% {
+                transform: translateX(-50%) translateY(8px);
+            }
         }
 
         @media (max-width: 480px) {
-            .page-content h2 { font-size: 28px; }
-            .page-content { padding: 20px; }
-            .page-1 .page-content .links { gap: 14px; }
+            .page-content h2 {
+                font-size: 28px;
+            }
+            .page-content {
+                padding: 20px;
+            }
+            .page-1 .page-content .links {
+                gap: 14px;
+            }
         }
     </style>
 </head>
 <body>
 
-    <div class="wrapper">
+    <div class="wrapper" id="wrapper">
 
         <section class="page page-1">
             <div class="page-content">
@@ -190,14 +201,14 @@
         <section class="page page-2">
             <div class="page-content">
                 <h2>🌄 第二页</h2>
-                <p>滚动流畅，停止时自动吸附到最近的一页。</p>
+                <p>滚动流畅，用力滚也不会卡住。</p>
             </div>
         </section>
 
         <section class="page page-3">
             <div class="page-content">
                 <h2>🌿 第三页</h2>
-                <p>不会卡在中间，松开就自动归位。</p>
+                <p>停止后自动吸附到最近的一页。</p>
             </div>
         </section>
 
@@ -211,6 +222,62 @@
     </div>
 
     <div class="hint">↓ 滚动翻页 ↓</div>
+
+    <script>
+        const wrapper = document.getElementById('wrapper');
+        let timer = null;
+        let isScrolling = false;
+
+        wrapper.addEventListener('scroll', function() {
+            // 滚动中标记
+            isScrolling = true;
+
+            // 清除之前的定时器
+            clearTimeout(timer);
+
+            // 滚动停止 150ms 后执行吸附
+            timer = setTimeout(function() {
+                isScrolling = false;
+                snapToNearest();
+            }, 150);
+        });
+
+        function snapToNearest() {
+            const pages = document.querySelectorAll('.page');
+            const scrollTop = wrapper.scrollTop;
+            let closestPage = 0;
+            let closestDist = Infinity;
+
+            pages.forEach((page, index) => {
+                const offsetTop = page.offsetTop;
+                const dist = Math.abs(scrollTop - offsetTop);
+                if (dist < closestDist) {
+                    closestDist = dist;
+                    closestPage = index;
+                }
+            });
+
+            // 如果距离小于屏幕高度的 40%，就吸附过去，否则不管（让用户自由停在中间）
+            const threshold = window.innerHeight * 0.4;
+            if (closestDist < threshold) {
+                wrapper.scrollTo({
+                    top: pages[closestPage].offsetTop,
+                    behavior: 'smooth'
+                });
+            }
+        }
+
+        // 窗口大小变化时重新计算（防止布局偏移）
+        let resizeTimer;
+        window.addEventListener('resize', function() {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(function() {
+                if (!isScrolling) {
+                    snapToNearest();
+                }
+            }, 300);
+        });
+    </script>
 
 </body>
 </html>
