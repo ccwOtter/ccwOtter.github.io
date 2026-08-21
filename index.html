@@ -1,9 +1,148 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ccwOtter</title>
+    <style>
+        /* ---------- 极简重置 ---------- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, 'PingFang SC', 'Segoe UI', Roboto, sans-serif;
+            background: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 24px;
+            color: #1a1a1a;
+        }
+
+        /* ---------- 极简卡片 ---------- */
+        .card {
+            max-width: 520px;
+            width: 100%;
+            text-align: center;
+            padding: 40px 24px;
+        }
+
+        /* ---------- 名字 ---------- */
+        h1 {
+            font-size: 42px;
+            font-weight: 300;
+            letter-spacing: 2px;
+            color: #111;
+            margin-bottom: 8px;
+        }
+
+        /* ---------- 副标题 ---------- */
+        .sub {
+            font-size: 15px;
+            font-weight: 400;
+            color: #888;
+            letter-spacing: 3px;
+            margin-bottom: 32px;
+        }
+
+        /* ---------- 分割线 ---------- */
+        .divider {
+            width: 32px;
+            height: 1px;
+            background: #ccc;
+            margin: 0 auto 32px;
+        }
+
+        /* ---------- 简介 ---------- */
+        .bio {
+            font-size: 15px;
+            line-height: 1.9;
+            color: #444;
+            margin-bottom: 36px;
+            font-weight: 300;
+        }
+
+        /* ---------- 链接 ---------- */
+        .links {
+            display: flex;
+            justify-content: center;
+            gap: 28px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .links a {
+            font-size: 14px;
+            color: #555;
+            text-decoration: none;
+            letter-spacing: 1px;
+            transition: color 0.2s ease;
+            font-weight: 400;
+            border-bottom: 1px solid transparent;
+            padding-bottom: 2px;
+        }
+
+        .links a:hover {
+            color: #000;
+            border-bottom-color: #000;
+        }
+
+        /* ---------- 页脚 ---------- */
+        .footer {
+            font-size: 12px;
+            color: #bbb;
+            letter-spacing: 1px;
+        }
+
+        .footer a {
+            color: #bbb;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            color: #888;
+        }
+
+        /* ---------- 响应式 ---------- */
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 32px;
+            }
+            .links {
+                gap: 18px;
+            }
+        }
+    </style>
 </head>
 <body>
-    页面内容
+
+    <div class="card">
+
+        <h1>ccw Otter</h1>
+        <p class="sub">Student · Developer</p>
+
+        <div class="divider"></div>
+
+        <p class="bio">
+            你好，我是 ccw Otter。<br />
+            写代码，做设计，读点书。
+        </p>
+
+        <div class="links">
+            <a href="https://github.com/ccwOtter" target="_blank">GitHub</a>
+            <a href="https://space.bilibili.com/" target="_blank">B站</a>
+            <a href="mailto:ccwotter@example.com">邮箱</a>
+        </div>
+
+        <div class="footer">
+            © 2026 · <a href="https://pages.github.com" target="_blank">GitHub Pages</a>
+        </div>
+
+    </div>
+
 </body>
 </html>
