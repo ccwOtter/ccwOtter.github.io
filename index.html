@@ -16,18 +16,16 @@
             font-family: -apple-system, 'PingFang SC', 'Segoe UI', Roboto, sans-serif;
         }
 
-        /* 整个容器：背景固定，内容滚动 */
         .wrapper {
             height: 100vh;
             overflow-y: scroll;
-            scroll-snap-type: y mandatory;
+            scroll-snap-type: y proximity;   /* 改成 proximity，滚动流畅，停止时再吸附 */
             background-image: url('https://picsum.photos/1920/1080?random=1');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
         }
 
-        /* 每一页：占满屏幕，磁铁吸附 */
         .page {
             height: 100vh;
             width: 100%;
@@ -41,7 +39,6 @@
             color: #fff;
         }
 
-        /* 文字卡片：半透明底，提升可读性 */
         .page-content {
             background: rgba(0, 0, 0, 0.35);
             padding: 30px 40px;
@@ -63,7 +60,7 @@
             opacity: 0.9;
         }
 
-        /* 第一页特殊：保留你的个人卡片样式（白底） */
+        /* 第一页：保留你的个人卡片样式 */
         .page-1 .page-content {
             background: rgba(255, 255, 255, 0.92);
             backdrop-filter: none;
@@ -137,7 +134,6 @@
             color: #888;
         }
 
-        /* 底部提示 */
         .hint {
             position: fixed;
             bottom: 30px;
@@ -167,7 +163,6 @@
 
     <div class="wrapper">
 
-        <!-- ===== 第1页：个人卡片 ===== -->
         <section class="page page-1">
             <div class="page-content">
                 <h2>ccw Otter</h2>
@@ -192,33 +187,29 @@
             </div>
         </section>
 
-        <!-- ===== 第2页 ===== -->
         <section class="page page-2">
             <div class="page-content">
                 <h2>🌄 第二页</h2>
-                <p>背景图固定不动，只有文字在翻页。</p>
+                <p>滚动流畅，停止时自动吸附到最近的一页。</p>
             </div>
         </section>
 
-        <!-- ===== 第3页 ===== -->
         <section class="page page-3">
             <div class="page-content">
                 <h2>🌿 第三页</h2>
-                <p>滚动像磁铁一样，自动吸附到最近的一页。</p>
+                <p>不会卡在中间，松开就自动归位。</p>
             </div>
         </section>
 
-        <!-- ===== 第4页 ===== -->
         <section class="page page-4">
             <div class="page-content">
                 <h2>🏔️ 第四页</h2>
-                <p>不会卡在中间，松开就自动归位。</p>
+                <p>背景图固定，只有文字在翻页。</p>
             </div>
         </section>
 
     </div>
 
-    <!-- 底部提示 -->
     <div class="hint">↓ 滚动翻页 ↓</div>
 
 </body>
