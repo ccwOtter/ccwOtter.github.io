@@ -62,56 +62,62 @@
             text-shadow: 0 1px 4px rgba(255, 255, 255, 0.2);
         }
 
-        /* 第一页：固定宽度 520px，居中，无框，深色文字 */
+        /* 第一页：宽屏 90%，左对齐，增加间距 */
+        .page-1 {
+            align-items: flex-start;
+            padding-left: 10%;
+        }
+
         .page-1 .page-content {
-            max-width: 520px;
+            max-width: 90%;
             width: 100%;
-            text-align: center;
+            text-align: left;
             color: #1a1a1a;
         }
 
         .page-1 .page-content h2 {
-            font-size: 42px;
+            font-size: 56px;
             font-weight: 300;
             letter-spacing: 2px;
-            margin-bottom: 8px;
+            margin-bottom: 12px;
             color: #111;
             text-shadow: 0 2px 8px rgba(255, 255, 255, 0.3);
         }
 
         .page-1 .page-content .sub {
-            font-size: 15px;
+            font-size: 18px;
             font-weight: 400;
             color: #888;
-            letter-spacing: 3px;
-            margin-bottom: 32px;
+            letter-spacing: 4px;
+            margin-bottom: 40px;
         }
 
         .page-1 .page-content .divider {
-            width: 32px;
-            height: 1px;
+            width: 48px;
+            height: 2px;
             background: #ccc;
-            margin: 0 auto 32px;
+            margin: 0 0 40px 0;
         }
 
         .page-1 .page-content .bio {
-            font-size: 15px;
-            line-height: 1.9;
+            font-size: 18px;
+            line-height: 2.2;
             color: #444;
-            margin-bottom: 36px;
+            margin-bottom: 48px;
             font-weight: 300;
+            max-width: 600px;
         }
 
         .page-1 .page-content .links {
             display: flex;
-            justify-content: center;
-            gap: 28px;
+            justify-content: flex-start;
+            gap: 32px;
             flex-wrap: wrap;
-            margin-bottom: 40px;
+            margin-bottom: 48px;
         }
 
         .page-1 .page-content .links a {
-            font-size: 14px;
+            font-size: 16px;
             color: #555;
             text-decoration: none;
             letter-spacing: 1px;
@@ -127,7 +133,7 @@
         }
 
         .page-1 .page-content .footer {
-            font-size: 12px;
+            font-size: 14px;
             color: #bbb;
             letter-spacing: 1px;
         }
@@ -159,10 +165,48 @@
             50% { transform: translateX(-50%) translateY(8px); }
         }
 
+        @media (max-width: 768px) {
+            .page-1 {
+                padding-left: 6%;
+                padding-right: 6%;
+            }
+            .page-1 .page-content h2 {
+                font-size: 40px;
+            }
+            .page-1 .page-content .bio {
+                font-size: 16px;
+                max-width: 100%;
+            }
+            .page-1 .page-content .links {
+                gap: 20px;
+            }
+            .page-1 .page-content .links a {
+                font-size: 14px;
+            }
+        }
+
         @media (max-width: 480px) {
-            .page-1 .page-content h2 { font-size: 32px; }
-            .page-1 .page-content .links { gap: 18px; }
-            .page:not(.page-1) .page-content h2 { font-size: 28px; }
+            .page-1 {
+                padding-left: 5%;
+                padding-right: 5%;
+            }
+            .page-1 .page-content h2 {
+                font-size: 32px;
+            }
+            .page-1 .page-content .sub {
+                font-size: 15px;
+                letter-spacing: 2px;
+            }
+            .page-1 .page-content .bio {
+                font-size: 15px;
+                line-height: 1.9;
+            }
+            .page-1 .page-content .links {
+                gap: 14px;
+            }
+            .page:not(.page-1) .page-content h2 {
+                font-size: 28px;
+            }
         }
     </style>
 </head>
@@ -170,7 +214,7 @@
 
     <div class="wrapper" id="wrapper">
 
-        <!-- ===== 第1页：固定宽度 520px ===== -->
+        <!-- ===== 第1页：左对齐，宽屏，间距大 ===== -->
         <section class="page page-1">
             <div class="page-content">
                 <h2>ccw Otter</h2>
