@@ -37,14 +37,15 @@
             padding: 24px;
         }
 
-        .page-content {
+        /* 第2页及以后：宽屏 90% */
+        .page:not(.page-1) .page-content {
             max-width: 90%;
             width: 100%;
             text-align: center;
             color: #1a1a1a;
         }
 
-        .page-content h2 {
+        .page:not(.page-1) .page-content h2 {
             font-size: 42px;
             font-weight: 300;
             letter-spacing: 2px;
@@ -53,7 +54,7 @@
             text-shadow: 0 2px 8px rgba(255, 255, 255, 0.3);
         }
 
-        .page-content p {
+        .page:not(.page-1) .page-content p {
             font-size: 18px;
             line-height: 1.8;
             opacity: 0.85;
@@ -61,40 +62,54 @@
             text-shadow: 0 1px 4px rgba(255, 255, 255, 0.2);
         }
 
+        /* 第一页：固定宽度 520px，居中，无框，深色文字 */
         .page-1 .page-content {
+            max-width: 520px;
+            width: 100%;
+            text-align: center;
             color: #1a1a1a;
         }
+
         .page-1 .page-content h2 {
-            color: #1a1a1a;
+            font-size: 42px;
+            font-weight: 300;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+            color: #111;
             text-shadow: 0 2px 8px rgba(255, 255, 255, 0.3);
         }
+
         .page-1 .page-content .sub {
             font-size: 15px;
             font-weight: 400;
-            color: #666;
+            color: #888;
             letter-spacing: 3px;
-            margin-bottom: 20px;
+            margin-bottom: 32px;
         }
+
         .page-1 .page-content .divider {
             width: 32px;
             height: 1px;
             background: #ccc;
-            margin: 0 auto 20px;
+            margin: 0 auto 32px;
         }
+
         .page-1 .page-content .bio {
             font-size: 15px;
             line-height: 1.9;
             color: #444;
-            margin-bottom: 24px;
+            margin-bottom: 36px;
             font-weight: 300;
         }
+
         .page-1 .page-content .links {
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 28px;
             flex-wrap: wrap;
-            margin-bottom: 24px;
+            margin-bottom: 40px;
         }
+
         .page-1 .page-content .links a {
             font-size: 14px;
             color: #555;
@@ -105,19 +120,23 @@
             border-bottom: 1px solid transparent;
             padding-bottom: 2px;
         }
+
         .page-1 .page-content .links a:hover {
             color: #000;
             border-bottom-color: #000;
         }
+
         .page-1 .page-content .footer {
             font-size: 12px;
             color: #bbb;
             letter-spacing: 1px;
         }
+
         .page-1 .page-content .footer a {
             color: #bbb;
             text-decoration: none;
         }
+
         .page-1 .page-content .footer a:hover {
             color: #888;
         }
@@ -141,8 +160,9 @@
         }
 
         @media (max-width: 480px) {
-            .page-content h2 { font-size: 28px; }
-            .page-1 .page-content .links { gap: 14px; }
+            .page-1 .page-content h2 { font-size: 32px; }
+            .page-1 .page-content .links { gap: 18px; }
+            .page:not(.page-1) .page-content h2 { font-size: 28px; }
         }
     </style>
 </head>
@@ -150,6 +170,7 @@
 
     <div class="wrapper" id="wrapper">
 
+        <!-- ===== 第1页：固定宽度 520px ===== -->
         <section class="page page-1">
             <div class="page-content">
                 <h2>ccw Otter</h2>
@@ -174,6 +195,7 @@
             </div>
         </section>
 
+        <!-- ===== 第2页：宽屏 90% ===== -->
         <section class="page page-2">
             <div class="page-content">
                 <h2>🌄 第二页</h2>
@@ -181,6 +203,7 @@
             </div>
         </section>
 
+        <!-- ===== 第3页：宽屏 90% ===== -->
         <section class="page page-3">
             <div class="page-content">
                 <h2>🌿 第三页</h2>
@@ -188,6 +211,7 @@
             </div>
         </section>
 
+        <!-- ===== 第4页：宽屏 90% ===== -->
         <section class="page page-4">
             <div class="page-content">
                 <h2>🏔️ 第四页</h2>
