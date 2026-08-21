@@ -5,25 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ccwOtter</title>
     <style>
-        /* ---------- 极简重置 ---------- */
+        /* ---------- 全局重置 ---------- */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        body {
+        html, body {
+            height: 100%;
             font-family: -apple-system, 'PingFang SC', 'Segoe UI', Roboto, sans-serif;
-            background: #ffffff;
-            min-height: 100vh;
+            scroll-behavior: smooth;
+        }
+
+        /* ---------- 每一页占满视口 ---------- */
+        .page {
+            height: 100vh;
+            width: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 24px;
-            color: #1a1a1a;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            position: relative;
         }
 
-        /* ---------- 极简卡片 ---------- */
+        /* ---------- 第一页：白色卡片（原样式） ---------- */
+        .page-1 {
+            background: #ffffff;
+        }
+
         .card {
             max-width: 520px;
             width: 100%;
@@ -31,8 +44,7 @@
             padding: 40px 24px;
         }
 
-        /* ---------- 名字 ---------- */
-        h1 {
+        .card h1 {
             font-size: 42px;
             font-weight: 300;
             letter-spacing: 2px;
@@ -40,8 +52,7 @@
             margin-bottom: 8px;
         }
 
-        /* ---------- 副标题 ---------- */
-        .sub {
+        .card .sub {
             font-size: 15px;
             font-weight: 400;
             color: #888;
@@ -49,16 +60,14 @@
             margin-bottom: 32px;
         }
 
-        /* ---------- 分割线 ---------- */
-        .divider {
+        .card .divider {
             width: 32px;
             height: 1px;
             background: #ccc;
             margin: 0 auto 32px;
         }
 
-        /* ---------- 简介 ---------- */
-        .bio {
+        .card .bio {
             font-size: 15px;
             line-height: 1.9;
             color: #444;
@@ -66,8 +75,7 @@
             font-weight: 300;
         }
 
-        /* ---------- 链接 ---------- */
-        .links {
+        .card .links {
             display: flex;
             justify-content: center;
             gap: 28px;
@@ -75,7 +83,7 @@
             margin-bottom: 40px;
         }
 
-        .links a {
+        .card .links a {
             font-size: 14px;
             color: #555;
             text-decoration: none;
@@ -86,67 +94,142 @@
             padding-bottom: 2px;
         }
 
-        .links a:hover {
+        .card .links a:hover {
             color: #000;
             border-bottom-color: #000;
         }
 
-        /* ---------- 页脚 ---------- */
-        .footer {
+        .card .footer {
             font-size: 12px;
             color: #bbb;
             letter-spacing: 1px;
         }
 
-        .footer a {
+        .card .footer a {
             color: #bbb;
             text-decoration: none;
         }
 
-        .footer a:hover {
+        .card .footer a:hover {
             color: #888;
         }
 
-        /* ---------- 响应式 ---------- */
         @media (max-width: 480px) {
-            h1 {
+            .card h1 {
                 font-size: 32px;
             }
-            .links {
+            .card .links {
                 gap: 18px;
             }
+        }
+
+        /* ---------- 第2页及以后：背景图 + 文字 ---------- */
+        .page-2 {
+            background-image: url('https://picsum.photos/1920/1080?random=1');
+        }
+        .page-3 {
+            background-image: url('https://picsum.photos/1920/1080?random=2');
+        }
+        .page-4 {
+            background-image: url('https://picsum.photos/1920/1080?random=3');
+        }
+
+        .page-content {
+            background: rgba(0, 0, 0, 0.35);
+            padding: 30px 40px;
+            border-radius: 16px;
+            backdrop-filter: blur(4px);
+            max-width: 700px;
+            text-align: center;
+            color: #fff;
+        }
+
+        .page-content h2 {
+            font-size: 42px;
+            font-weight: 300;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+        }
+
+        .page-content p {
+            font-size: 18px;
+            line-height: 1.8;
+            opacity: 0.9;
+        }
+
+        /* ---------- 底部滚动提示 ---------- */
+        .hint {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 14px;
+            letter-spacing: 2px;
+            animation: bounce 2s infinite;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(8px); }
         }
     </style>
 </head>
 <body>
 
-    <div class="card">
-
-        <h1>ccw Otter</h1>
-        <p class="sub">Student · Developer</p>
-
-        <div class="divider"></div>
-
-        <p class="bio">
-            你好，我是 ccwOtter。<br />
-            活跃于网上的player。
-        </p>
-
-        <div class="links">
-            <a href="https://github.com/ccwOtter" target="_blank">GitHub</a>
-            <a href="https://space.bilibili.com/1024418680?spm_id_from=333.1007.0.0" target="_blank">bilibili</a>
-            <a href="https://www.ccw.site/student/62bfbc958cf2185c64235322" target="_blank">共创世界</a>
-            <a href="https://x.com/ccwOtter" target="_blank">X</a>
-            <a href="https://www.pixiv.net/users/117660102" target="_blank">pixiv</a>
-            <a href="https://discord.com/users/1139064743097806930" target="_blank">discord</a>
-            <a href="mailto:otter_yyds@163.com">邮箱</a>
+    <!-- ===== 第1页：原个人主页 ===== -->
+    <section class="page page-1">
+        <div class="card">
+            <h1>ccw Otter</h1>
+            <p class="sub">Student · Developer</p>
+            <div class="divider"></div>
+            <p class="bio">
+                你好，我是 ccwOtter。<br />
+                活跃于网上的player。
+            </p>
+            <div class="links">
+                <a href="https://github.com/ccwOtter" target="_blank">GitHub</a>
+                <a href="https://space.bilibili.com/1024418680?spm_id_from=333.1007.0.0" target="_blank">bilibili</a>
+                <a href="https://www.ccw.site/student/62bfbc958cf2185c64235322" target="_blank">共创世界</a>
+                <a href="https://x.com/ccwOtter" target="_blank">X</a>
+                <a href="https://www.pixiv.net/users/117660102" target="_blank">pixiv</a>
+                <a href="https://discord.com/users/1139064743097806930" target="_blank">discord</a>
+                <a href="mailto:otter_yyds@163.com">邮箱</a>
+            </div>
+            <div class="footer">
+                © 2026 · <a href="https://pages.github.com" target="_blank">GitHub Pages</a>
+            </div>
         </div>
+    </section>
 
-        <div class="footer">
-            © 2026 · <a href="https://pages.github.com" target="_blank">GitHub Pages</a>
+    <!-- ===== 第2页 ===== -->
+    <section class="page page-2">
+        <div class="page-content">
+            <h2>🌄 第二页</h2>
+            <p>每一页都是一整张背景图，滚动会自动吸附，不会卡在中间。</p>
         </div>
+    </section>
 
-    </div>
+    <!-- ===== 第3页 ===== -->
+    <section class="page page-3">
+        <div class="page-content">
+            <h2>🌿 第三页</h2>
+            <p>你可以在这里放任何想展示的内容。</p>
+        </div>
+    </section>
+
+    <!-- ===== 第4页 ===== -->
+    <section class="page page-4">
+        <div class="page-content">
+            <h2>🏔️ 第四页</h2>
+            <p>背景图可以换成你自己的图片链接。</p>
+        </div>
+    </section>
+
+    <!-- 底部提示 -->
+    <div class="hint">↓ 滚动翻页 ↓</div>
 
 </body>
 </html>
