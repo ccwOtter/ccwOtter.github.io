@@ -20,6 +20,7 @@
             height: 100vh;
             overflow-y: scroll;
             scroll-behavior: smooth;
+            /* 固定背景图 */
             background-image: url('https://picsum.photos/1920/1080?random=1');
             background-size: cover;
             background-position: center;
@@ -38,7 +39,7 @@
             color: #fff;
         }
 
-        /* 文字直接显示，不要框 */
+        /* 所有页文字无框 */
         .page-content {
             max-width: 90%;
             width: 100%;
@@ -61,47 +62,34 @@
             text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
         }
 
-        /* 第一页保留卡片样式（白底+框） */
+        /* 第一页也去掉框，文字直接显示在背景上 */
         .page-1 .page-content {
-            background: rgba(255, 255, 255, 0.92);
-            backdrop-filter: none;
-            color: #1a1a1a;
-            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15);
-            max-width: 520px;
-            padding: 40px 24px;
-            border-radius: 16px;
+            color: #fff;
         }
-
         .page-1 .page-content h2 {
-            text-shadow: none;
+            color: #fff;
+            text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
         }
-        .page-1 .page-content p {
-            text-shadow: none;
-        }
-
         .page-1 .page-content .sub {
             font-size: 15px;
             font-weight: 400;
-            color: #888;
+            color: rgba(255, 255, 255, 0.7);
             letter-spacing: 3px;
             margin-bottom: 20px;
         }
-
         .page-1 .page-content .divider {
             width: 32px;
             height: 1px;
-            background: #ccc;
+            background: rgba(255, 255, 255, 0.4);
             margin: 0 auto 20px;
         }
-
         .page-1 .page-content .bio {
             font-size: 15px;
             line-height: 1.9;
-            color: #444;
+            color: rgba(255, 255, 255, 0.9);
             margin-bottom: 24px;
             font-weight: 300;
         }
-
         .page-1 .page-content .links {
             display: flex;
             justify-content: center;
@@ -109,10 +97,9 @@
             flex-wrap: wrap;
             margin-bottom: 24px;
         }
-
         .page-1 .page-content .links a {
             font-size: 14px;
-            color: #555;
+            color: rgba(255, 255, 255, 0.7);
             text-decoration: none;
             letter-spacing: 1px;
             transition: color 0.2s ease;
@@ -120,25 +107,21 @@
             border-bottom: 1px solid transparent;
             padding-bottom: 2px;
         }
-
         .page-1 .page-content .links a:hover {
-            color: #000;
-            border-bottom-color: #000;
+            color: #fff;
+            border-bottom-color: #fff;
         }
-
         .page-1 .page-content .footer {
             font-size: 12px;
-            color: #bbb;
+            color: rgba(255, 255, 255, 0.4);
             letter-spacing: 1px;
         }
-
         .page-1 .page-content .footer a {
-            color: #bbb;
+            color: rgba(255, 255, 255, 0.4);
             text-decoration: none;
         }
-
         .page-1 .page-content .footer a:hover {
-            color: #888;
+            color: rgba(255, 255, 255, 0.8);
         }
 
         .hint {
@@ -161,7 +144,6 @@
 
         @media (max-width: 480px) {
             .page-content h2 { font-size: 28px; }
-            .page-1 .page-content { max-width: 100%; margin: 0 16px; padding: 30px 16px; }
             .page-1 .page-content .links { gap: 14px; }
         }
     </style>
@@ -197,21 +179,21 @@
         <section class="page page-2">
             <div class="page-content">
                 <h2>🌄 第二页</h2>
-                <p>文字直接显示在背景上，没有框。</p>
+                <p>所有页面都是同一张固定背景图。</p>
             </div>
         </section>
 
         <section class="page page-3">
             <div class="page-content">
                 <h2>🌿 第三页</h2>
-                <p>宽度占屏幕的 90%，看起来更大气。</p>
+                <p>文字直接显示在背景上，没有框。</p>
             </div>
         </section>
 
         <section class="page page-4">
             <div class="page-content">
                 <h2>🏔️ 第四页</h2>
-                <p>背景图固定，只有文字在翻页。</p>
+                <p>宽度 90%，清爽大气。</p>
             </div>
         </section>
 
