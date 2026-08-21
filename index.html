@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ccwOtter</title>
-    <link rel="icon" href="wclover.png">
+    <title>ccwOtter · 我的游戏</title>
+    <!-- 网页图标：wclover.png 需与html同目录 -->
+    <link rel="icon" href="wclover.png" type="image/png">
     <style>
         * {
             margin: 0;
@@ -15,18 +16,17 @@
         html, body {
             height: 100%;
             font-family: -apple-system, 'PingFang SC', 'Segoe UI', Roboto, sans-serif;
+            background: #ffffff;
         }
 
         .wrapper {
             height: 100vh;
             overflow-y: scroll;
             scroll-behavior: smooth;
-            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9IiNmZmZmZmYiLz48L3N2Zz4=');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
+            background: #ffffff;
         }
 
+        /* ---------- 通用 page ---------- */
         .page {
             height: 100vh;
             width: 100%;
@@ -36,6 +36,7 @@
             align-items: center;
             text-align: center;
             padding: 40px 60px;
+            background: #ffffff;
         }
 
         .page-content {
@@ -45,29 +46,13 @@
             color: #1a1a1a;
         }
 
-        .page-content h2 {
-            font-size: 64px;
-            font-weight: 300;
-            letter-spacing: 4px;
-            margin-bottom: 24px;
-            color: #1a1a1a;
-            text-shadow: none;
-        }
-
-        .page-content p {
-            font-size: 24px;
-            line-height: 2;
-            opacity: 0.85;
-            color: #1a1a1a;
-            text-shadow: none;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
+        /* ---------- 第一页 (保留) ---------- */
         .page-1 .page-content h2 {
             font-size: 80px;
+            font-weight: 300;
             letter-spacing: 6px;
             margin-bottom: 20px;
+            color: #1a1a1a;
         }
 
         .page-1 .page-content .sub {
@@ -106,7 +91,7 @@
             color: #555;
             text-decoration: none;
             letter-spacing: 2px;
-            transition: color 0.2s ease;
+            transition: color 0.2s ease, border-bottom-color 0.2s ease;
             font-weight: 400;
             border-bottom: 1px solid transparent;
             padding-bottom: 4px;
@@ -132,6 +117,146 @@
             color: #888;
         }
 
+        /* ---------- 第二页 · 我的游戏 (极简风 + 可点击卡片) ---------- */
+        .page-2 {
+            justify-content: flex-start;
+            padding: 40px 60px 60px 60px;
+            background: #ffffff;
+            align-items: flex-start;
+            text-align: left;
+            height: 100vh;
+            overflow-y: auto;
+        }
+
+        .page-2 .games-header {
+            width: 100%;
+            margin-bottom: 48px;
+            padding-top: 8px;
+        }
+
+        .page-2 .games-header h2 {
+            font-size: 32px;
+            font-weight: 300;
+            letter-spacing: 4px;
+            color: #1a1a1a;
+            margin: 0;
+            border-bottom: 1px solid #eaeaea;
+            padding-bottom: 12px;
+            display: inline-block;
+        }
+
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto 0 0;
+        }
+
+        /* 明信片卡片 — 整张卡片可点击 */
+        .game-card {
+            background: #ffffff;
+            border: 1px solid #eaeaea;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: border-color 0.2s ease, transform 0.15s ease;
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;          /* 去掉下划线 */
+            color: inherit;                 /* 保持文字颜色 */
+            cursor: pointer;
+        }
+
+        .game-card:hover {
+            border-color: #888;
+            transform: translateY(-2px);
+        }
+
+        .game-card:active {
+            transform: scale(0.98);
+        }
+
+        .game-card .card-image {
+            width: 100%;
+            aspect-ratio: 16 / 10;
+            background: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .game-card .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .game-card .card-body {
+            padding: 18px 20px 22px 20px;
+            text-align: left;
+        }
+
+        .game-card .card-body h3 {
+            font-size: 20px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+            /* 模拟链接样式：下划线 + 颜色变化，但保留极简 */
+            transition: color 0.2s;
+        }
+
+        /* 让游戏名更明显可点 (悬停变深色) */
+        .game-card:hover .card-body h3 {
+            color: #000;
+        }
+
+        .game-card .card-body p {
+            font-size: 15px;
+            line-height: 1.6;
+            color: #666;
+            font-weight: 300;
+            margin: 0;
+        }
+
+        /* 占位图片 */
+        .placeholder-img {
+            width: 100%;
+            height: 100%;
+            background: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            color: #bbb;
+            letter-spacing: 1px;
+            font-weight: 300;
+        }
+
+        /* ---------- 第三页 / 第四页 (保留) ---------- */
+        .page-3 .page-content h2,
+        .page-4 .page-content h2 {
+            font-size: 64px;
+            font-weight: 300;
+            letter-spacing: 4px;
+            margin-bottom: 24px;
+            color: #1a1a1a;
+        }
+
+        .page-3 .page-content p,
+        .page-4 .page-content p {
+            font-size: 24px;
+            line-height: 2;
+            opacity: 0.85;
+            color: #1a1a1a;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* ---------- 底部提示 ---------- */
         .hint {
             position: fixed;
             bottom: 40px;
@@ -150,15 +275,33 @@
             50% { transform: translateX(-50%) translateY(12px); }
         }
 
-        @media (max-width: 768px) {
-            .page {
-                padding: 30px 30px;
+        /* ---------- 响应式 ---------- */
+        @media (max-width: 1024px) {
+            .games-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 24px;
             }
-            .page-content h2 {
-                font-size: 44px;
+            .page-2 {
+                padding: 32px 40px 40px 40px;
             }
-            .page-content p {
-                font-size: 20px;
+        }
+
+        @media (max-width: 600px) {
+            .games-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            .page-2 {
+                padding: 24px 20px 30px 20px;
+            }
+            .page-2 .games-header h2 {
+                font-size: 28px;
+            }
+            .game-card .card-body h3 {
+                font-size: 18px;
+            }
+            .game-card .card-body p {
+                font-size: 14px;
             }
             .page-1 .page-content h2 {
                 font-size: 52px;
@@ -172,17 +315,19 @@
             .page-1 .page-content .links a {
                 font-size: 16px;
             }
+            .page-3 .page-content h2,
+            .page-4 .page-content h2 {
+                font-size: 38px;
+            }
+            .page-3 .page-content p,
+            .page-4 .page-content p {
+                font-size: 18px;
+            }
         }
 
         @media (max-width: 480px) {
             .page {
                 padding: 20px 20px;
-            }
-            .page-content h2 {
-                font-size: 32px;
-            }
-            .page-content p {
-                font-size: 17px;
             }
             .page-1 .page-content h2 {
                 font-size: 38px;
@@ -202,8 +347,8 @@
             .page-1 .page-content .links a {
                 font-size: 14px;
             }
-            .page-1 .page-content .footer {
-                font-size: 13px;
+            .page-2 .games-header h2 {
+                font-size: 24px;
             }
         }
     </style>
@@ -212,6 +357,7 @@
 
     <div class="wrapper" id="wrapper">
 
+        <!-- ===== 第一页 ===== -->
         <section class="page page-1">
             <div class="page-content">
                 <h2>ccw Otter</h2>
@@ -236,20 +382,72 @@
             </div>
         </section>
 
+        <!-- ===== 第二页 · 我的游戏 (卡片可点击跳转) ===== -->
         <section class="page page-2">
+            <div class="games-header">
+                <h2>my games</h2>
+            </div>
+
+            <div class="games-grid">
+                <!-- 1. 星露谷物语 → 跳转官网 -->
+                <a href="https://www.stardewvalley.net/" target="_blank" class="game-card">
+                    <div class="card-image">
+                        <img src="game1.jpg" alt="星露谷物语" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="placeholder-img" style="display:none;">🎮 星露谷</div>
+                    </div>
+                    <div class="card-body">
+                        <h3>星露谷物语</h3>
+                        <p>在鹈鹕镇经营农场，钓鱼、采矿、交友，享受田园生活。</p>
+                    </div>
+                </a>
+
+                <!-- 2. 空洞骑士 → 跳转官网 -->
+                <a href="https://hollowknight.com/" target="_blank" class="game-card">
+                    <div class="card-image">
+                        <img src="game2.jpg" alt="空洞骑士" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="placeholder-img" style="display:none;">⚔️ 空洞骑士</div>
+                    </div>
+                    <div class="card-body">
+                        <h3>空洞骑士</h3>
+                        <p>探索衰败的昆虫王国，挑战强大的boss，体验史诗级银河城。</p>
+                    </div>
+                </a>
+
+                <!-- 3. 泰拉瑞亚 → 跳转官网 -->
+                <a href="https://terraria.org/" target="_blank" class="game-card">
+                    <div class="card-image">
+                        <img src="game3.jpg" alt="泰拉瑞亚" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="placeholder-img" style="display:none;">⛏️ 泰拉瑞亚</div>
+                    </div>
+                    <div class="card-body">
+                        <h3>泰拉瑞亚</h3>
+                        <p>挖掘、建造、战斗，在2D沙盒世界中创造属于你的冒险。</p>
+                    </div>
+                </a>
+
+                <!-- 4. 塞尔达传说 → 跳转任天堂官网 -->
+                <a href="https://www.nintendo.com/us/store/products/the-legend-of-zelda-breath-of-the-wild-switch/" target="_blank" class="game-card">
+                    <div class="card-image">
+                        <img src="game4.jpg" alt="塞尔达传说" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="placeholder-img" style="display:none;">🗡️ 塞尔达</div>
+                    </div>
+                    <div class="card-body">
+                        <h3>塞尔达传说</h3>
+                        <p>广阔的海拉鲁大陆，自由探索，解谜与战斗的完美结合。</p>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- ===== 第三页 ===== -->
+        <section class="page page-3">
             <div class="page-content">
-                <h2>🌄 第二页</h2>
+                <h2>🌄 第三页</h2>
                 <p>文字深色，背景白色，更清爽。</p>
             </div>
         </section>
 
-        <section class="page page-3">
-            <div class="page-content">
-                <h2>🌿 第三页</h2>
-                <p>宽度 90%，无框，干净简洁。</p>
-            </div>
-        </section>
-
+        <!-- ===== 第四页 ===== -->
         <section class="page page-4">
             <div class="page-content">
                 <h2>🏔️ 第四页</h2>
@@ -307,6 +505,22 @@
                     snapToNearest();
                 }
             }, 300);
+        });
+
+        // 处理图片加载失败时显示占位
+        document.querySelectorAll('.game-card .card-image').forEach(container => {
+            const img = container.querySelector('img');
+            const placeholder = container.querySelector('.placeholder-img');
+            if (img && placeholder) {
+                img.addEventListener('load', function() {
+                    placeholder.style.display = 'none';
+                    img.style.display = 'block';
+                });
+                if (img.complete && img.naturalWidth === 0) {
+                    img.style.display = 'none';
+                    placeholder.style.display = 'flex';
+                }
+            }
         });
     </script>
 
