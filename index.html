@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ccwOtter</title>
     <style>
-        /* ---------- 全局重置 ---------- */
         * {
             margin: 0;
             padding: 0;
@@ -15,133 +14,40 @@
         html, body {
             height: 100%;
             font-family: -apple-system, 'PingFang SC', 'Segoe UI', Roboto, sans-serif;
-            scroll-behavior: smooth;
         }
 
-        /* ---------- 每一页占满视口 ---------- */
+        /* 整个容器：背景固定，内容滚动 */
+        .wrapper {
+            height: 100vh;
+            overflow-y: scroll;
+            scroll-snap-type: y mandatory;
+            background-image: url('https://picsum.photos/1920/1080?random=1');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        /* 每一页：占满屏幕，磁铁吸附 */
         .page {
             height: 100vh;
             width: 100%;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 24px;
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            position: relative;
-        }
-
-        /* ---------- 第一页：白色卡片（原样式） ---------- */
-        .page-1 {
-            background: #ffffff;
-        }
-
-        .card {
-            max-width: 520px;
-            width: 100%;
             text-align: center;
-            padding: 40px 24px;
+            padding: 24px;
+            scroll-snap-align: start;
+            color: #fff;
         }
 
-        .card h1 {
-            font-size: 42px;
-            font-weight: 300;
-            letter-spacing: 2px;
-            color: #111;
-            margin-bottom: 8px;
-        }
-
-        .card .sub {
-            font-size: 15px;
-            font-weight: 400;
-            color: #888;
-            letter-spacing: 3px;
-            margin-bottom: 32px;
-        }
-
-        .card .divider {
-            width: 32px;
-            height: 1px;
-            background: #ccc;
-            margin: 0 auto 32px;
-        }
-
-        .card .bio {
-            font-size: 15px;
-            line-height: 1.9;
-            color: #444;
-            margin-bottom: 36px;
-            font-weight: 300;
-        }
-
-        .card .links {
-            display: flex;
-            justify-content: center;
-            gap: 28px;
-            flex-wrap: wrap;
-            margin-bottom: 40px;
-        }
-
-        .card .links a {
-            font-size: 14px;
-            color: #555;
-            text-decoration: none;
-            letter-spacing: 1px;
-            transition: color 0.2s ease;
-            font-weight: 400;
-            border-bottom: 1px solid transparent;
-            padding-bottom: 2px;
-        }
-
-        .card .links a:hover {
-            color: #000;
-            border-bottom-color: #000;
-        }
-
-        .card .footer {
-            font-size: 12px;
-            color: #bbb;
-            letter-spacing: 1px;
-        }
-
-        .card .footer a {
-            color: #bbb;
-            text-decoration: none;
-        }
-
-        .card .footer a:hover {
-            color: #888;
-        }
-
-        @media (max-width: 480px) {
-            .card h1 {
-                font-size: 32px;
-            }
-            .card .links {
-                gap: 18px;
-            }
-        }
-
-        /* ---------- 第2页及以后：背景图 + 文字 ---------- */
-        .page-2 {
-            background-image: url('https://picsum.photos/1920/1080?random=1');
-        }
-        .page-3 {
-            background-image: url('https://picsum.photos/1920/1080?random=2');
-        }
-        .page-4 {
-            background-image: url('https://picsum.photos/1920/1080?random=3');
-        }
-
+        /* 文字卡片：半透明底，提升可读性 */
         .page-content {
             background: rgba(0, 0, 0, 0.35);
             padding: 30px 40px;
             border-radius: 16px;
             backdrop-filter: blur(4px);
             max-width: 700px;
-            text-align: center;
-            color: #fff;
         }
 
         .page-content h2 {
@@ -157,13 +63,87 @@
             opacity: 0.9;
         }
 
-        /* ---------- 底部滚动提示 ---------- */
+        /* 第一页特殊：保留你的个人卡片样式（白底） */
+        .page-1 .page-content {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: none;
+            color: #1a1a1a;
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .page-1 .page-content h2 {
+            color: #111;
+        }
+
+        .page-1 .page-content .sub {
+            font-size: 15px;
+            font-weight: 400;
+            color: #888;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+        }
+
+        .page-1 .page-content .divider {
+            width: 32px;
+            height: 1px;
+            background: #ccc;
+            margin: 0 auto 20px;
+        }
+
+        .page-1 .page-content .bio {
+            font-size: 15px;
+            line-height: 1.9;
+            color: #444;
+            margin-bottom: 24px;
+            font-weight: 300;
+        }
+
+        .page-1 .page-content .links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 24px;
+        }
+
+        .page-1 .page-content .links a {
+            font-size: 14px;
+            color: #555;
+            text-decoration: none;
+            letter-spacing: 1px;
+            transition: color 0.2s ease;
+            font-weight: 400;
+            border-bottom: 1px solid transparent;
+            padding-bottom: 2px;
+        }
+
+        .page-1 .page-content .links a:hover {
+            color: #000;
+            border-bottom-color: #000;
+        }
+
+        .page-1 .page-content .footer {
+            font-size: 12px;
+            color: #bbb;
+            letter-spacing: 1px;
+        }
+
+        .page-1 .page-content .footer a {
+            color: #bbb;
+            text-decoration: none;
+        }
+
+        .page-1 .page-content .footer a:hover {
+            color: #888;
+        }
+
+        /* 底部提示 */
         .hint {
             position: fixed;
             bottom: 30px;
             left: 50%;
             transform: translateX(-50%);
-            color: rgba(255, 255, 255, 0.4);
+            color: rgba(255, 255, 255, 0.5);
             font-size: 14px;
             letter-spacing: 2px;
             animation: bounce 2s infinite;
@@ -175,58 +155,68 @@
             0%, 100% { transform: translateX(-50%) translateY(0); }
             50% { transform: translateX(-50%) translateY(8px); }
         }
+
+        @media (max-width: 480px) {
+            .page-content h2 { font-size: 28px; }
+            .page-content { padding: 20px; }
+            .page-1 .page-content .links { gap: 14px; }
+        }
     </style>
 </head>
 <body>
 
-    <!-- ===== 第1页：原个人主页 ===== -->
-    <section class="page page-1">
-        <div class="card">
-            <h1>ccw Otter</h1>
-            <p class="sub">Student · Developer</p>
-            <div class="divider"></div>
-            <p class="bio">
-                你好，我是 ccwOtter。<br />
-                活跃于网上的player。
-            </p>
-            <div class="links">
-                <a href="https://github.com/ccwOtter" target="_blank">GitHub</a>
-                <a href="https://space.bilibili.com/1024418680?spm_id_from=333.1007.0.0" target="_blank">bilibili</a>
-                <a href="https://www.ccw.site/student/62bfbc958cf2185c64235322" target="_blank">共创世界</a>
-                <a href="https://x.com/ccwOtter" target="_blank">X</a>
-                <a href="https://www.pixiv.net/users/117660102" target="_blank">pixiv</a>
-                <a href="https://discord.com/users/1139064743097806930" target="_blank">discord</a>
-                <a href="mailto:otter_yyds@163.com">邮箱</a>
+    <div class="wrapper">
+
+        <!-- ===== 第1页：个人卡片 ===== -->
+        <section class="page page-1">
+            <div class="page-content">
+                <h2>ccw Otter</h2>
+                <p class="sub">Student · Developer</p>
+                <div class="divider"></div>
+                <p class="bio">
+                    你好，我是 ccwOtter。<br />
+                    活跃于网上的player。
+                </p>
+                <div class="links">
+                    <a href="https://github.com/ccwOtter" target="_blank">GitHub</a>
+                    <a href="https://space.bilibili.com/1024418680" target="_blank">bilibili</a>
+                    <a href="https://www.ccw.site/student/62bfbc958cf2185c64235322" target="_blank">共创世界</a>
+                    <a href="https://x.com/ccwOtter" target="_blank">X</a>
+                    <a href="https://www.pixiv.net/users/117660102" target="_blank">pixiv</a>
+                    <a href="https://discord.com/users/1139064743097806930" target="_blank">discord</a>
+                    <a href="mailto:otter_yyds@163.com">邮箱</a>
+                </div>
+                <div class="footer">
+                    © 2026 · <a href="https://pages.github.com" target="_blank">GitHub Pages</a>
+                </div>
             </div>
-            <div class="footer">
-                © 2026 · <a href="https://pages.github.com" target="_blank">GitHub Pages</a>
+        </section>
+
+        <!-- ===== 第2页 ===== -->
+        <section class="page page-2">
+            <div class="page-content">
+                <h2>🌄 第二页</h2>
+                <p>背景图固定不动，只有文字在翻页。</p>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- ===== 第2页 ===== -->
-    <section class="page page-2">
-        <div class="page-content">
-            <h2>🌄 第二页</h2>
-            <p>每一页都是一整张背景图，滚动会自动吸附，不会卡在中间。</p>
-        </div>
-    </section>
+        <!-- ===== 第3页 ===== -->
+        <section class="page page-3">
+            <div class="page-content">
+                <h2>🌿 第三页</h2>
+                <p>滚动像磁铁一样，自动吸附到最近的一页。</p>
+            </div>
+        </section>
 
-    <!-- ===== 第3页 ===== -->
-    <section class="page page-3">
-        <div class="page-content">
-            <h2>🌿 第三页</h2>
-            <p>你可以在这里放任何想展示的内容。</p>
-        </div>
-    </section>
+        <!-- ===== 第4页 ===== -->
+        <section class="page page-4">
+            <div class="page-content">
+                <h2>🏔️ 第四页</h2>
+                <p>不会卡在中间，松开就自动归位。</p>
+            </div>
+        </section>
 
-    <!-- ===== 第4页 ===== -->
-    <section class="page page-4">
-        <div class="page-content">
-            <h2>🏔️ 第四页</h2>
-            <p>背景图可以换成你自己的图片链接。</p>
-        </div>
-    </section>
+    </div>
 
     <!-- 底部提示 -->
     <div class="hint">↓ 滚动翻页 ↓</div>
