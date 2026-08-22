@@ -1,11 +1,10 @@
-
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ccwOtter</title>
-     <link rel="icon" href="../wclover.png" type="image/png">
+    <link rel="icon" href="../wclover.png" type="image/png">
     <style>
         * {
             margin: 0;
@@ -29,12 +28,48 @@
             flex-direction: column;
             align-items: flex-start;
             justify-content: flex-start;
+            position: relative;  /* 为箭头定位提供参考 */
         }
 
+        /* ----- 新增：返回箭头（左上角） ----- */
+        .back-arrow {
+            position: absolute;
+            top: 28px;
+            left: 32px;
+            font-size: 32px;
+            font-weight: 300;
+            color: #1a1a1a;
+            text-decoration: none;
+            transition: color 0.2s, transform 0.15s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(2px);
+            border: 1px solid #eaeaea;
+            z-index: 10;
+        }
+
+        .back-arrow:hover {
+            color: #000;
+            border-color: #888;
+            transform: scale(1.05);
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        .back-arrow:active {
+            transform: scale(0.92);
+        }
+
+        /* 让标题左移一点，避免和箭头重叠 */
         .games-header {
             width: 100%;
             margin-bottom: 48px;
             padding-top: 8px;
+            padding-left: 60px;  /* 给箭头留空间 */
         }
 
         .games-header h2 {
@@ -136,7 +171,7 @@
             font-weight: 300;
         }
 
-        /* 底部小提示（致敬原版） */
+        /* 底部小提示 */
         .hint {
             margin-top: 60px;
             width: 100%;
@@ -155,6 +190,16 @@
             .page-games {
                 padding: 32px 40px 40px 40px;
             }
+            .games-header {
+                padding-left: 56px;
+            }
+            .back-arrow {
+                top: 24px;
+                left: 24px;
+                font-size: 28px;
+                width: 44px;
+                height: 44px;
+            }
         }
 
         @media (max-width: 600px) {
@@ -165,6 +210,9 @@
             .page-games {
                 padding: 24px 20px 30px 20px;
             }
+            .games-header {
+                padding-left: 48px;
+            }
             .games-header h2 {
                 font-size: 28px;
             }
@@ -174,14 +222,31 @@
             .game-card .card-body p {
                 font-size: 14px;
             }
+            .back-arrow {
+                top: 18px;
+                left: 16px;
+                font-size: 24px;
+                width: 40px;
+                height: 40px;
+            }
         }
 
         @media (max-width: 480px) {
             .page-games {
                 padding: 20px 16px 24px 16px;
             }
+            .games-header {
+                padding-left: 44px;
+            }
             .games-header h2 {
                 font-size: 24px;
+            }
+            .back-arrow {
+                top: 14px;
+                left: 12px;
+                font-size: 22px;
+                width: 36px;
+                height: 36px;
             }
         }
     </style>
@@ -190,6 +255,12 @@
 
     <!-- 独立第二页 · 我的游戏 -->
     <div class="page-games">
+
+        <!-- 返回箭头：指向 ccwotter.github.io -->
+        <a href="https://ccwotter.github.io" class="back-arrow" aria-label="返回首页">
+            ‹
+        </a>
+
         <div class="games-header">
             <h2>my games</h2>
         </div>
@@ -244,22 +315,20 @@
             </a>
         </div>
 
-        <!-- 底部提示（轻量） -->
+        <!-- 底部提示 -->
         <div class="hint">↓ 滚动浏览 · 点击卡片跳转 ↓</div>
     </div>
 
     <script>
-        // 处理图片加载失败时显示占位（优雅降级）
+        // 处理图片加载失败时显示占位
         document.querySelectorAll('.game-card .card-image').forEach(container => {
             const img = container.querySelector('img');
             const placeholder = container.querySelector('.placeholder-img');
             if (img && placeholder) {
-                // 如果图片加载失败，显示占位
                 img.addEventListener('error', function() {
                     img.style.display = 'none';
                     placeholder.style.display = 'flex';
                 });
-                // 如果图片已经加载完成但宽度为0（比如空src），也显示占位
                 if (img.complete && img.naturalWidth === 0) {
                     img.style.display = 'none';
                     placeholder.style.display = 'flex';
