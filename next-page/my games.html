@@ -1,1 +1,272 @@
 
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ccwOtter</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎮</text></svg>" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            font-family: -apple-system, 'PingFang SC', 'Segoe UI', Roboto, sans-serif;
+            background: #ffffff;
+        }
+
+        /* 独立第二页 — 极简游戏墙 */
+        .page-games {
+            min-height: 100vh;
+            width: 100%;
+            padding: 40px 60px 60px 60px;
+            background: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+        }
+
+        .games-header {
+            width: 100%;
+            margin-bottom: 48px;
+            padding-top: 8px;
+        }
+
+        .games-header h2 {
+            font-size: 32px;
+            font-weight: 300;
+            letter-spacing: 4px;
+            color: #1a1a1a;
+            margin: 0;
+            border-bottom: 1px solid #eaeaea;
+            padding-bottom: 12px;
+            display: inline-block;
+        }
+
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0;
+        }
+
+        /* 明信片卡片 — 整张可点击 */
+        .game-card {
+            background: #ffffff;
+            border: 1px solid #eaeaea;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: border-color 0.2s ease, transform 0.15s ease;
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+            color: inherit;
+            cursor: pointer;
+        }
+
+        .game-card:hover {
+            border-color: #888;
+            transform: translateY(-2px);
+        }
+
+        .game-card:active {
+            transform: scale(0.98);
+        }
+
+        .game-card .card-image {
+            width: 100%;
+            aspect-ratio: 16 / 10;
+            background: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .game-card .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .game-card .card-body {
+            padding: 18px 20px 22px 20px;
+            text-align: left;
+        }
+
+        .game-card .card-body h3 {
+            font-size: 20px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+            transition: color 0.2s;
+        }
+
+        .game-card:hover .card-body h3 {
+            color: #000;
+        }
+
+        .game-card .card-body p {
+            font-size: 15px;
+            line-height: 1.6;
+            color: #666;
+            font-weight: 300;
+            margin: 0;
+        }
+
+        .placeholder-img {
+            width: 100%;
+            height: 100%;
+            background: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            color: #bbb;
+            letter-spacing: 1px;
+            font-weight: 300;
+        }
+
+        /* 底部小提示（致敬原版） */
+        .hint {
+            margin-top: 60px;
+            width: 100%;
+            text-align: center;
+            color: rgba(0, 0, 0, 0.2);
+            font-size: 16px;
+            letter-spacing: 3px;
+        }
+
+        /* 响应式 */
+        @media (max-width: 1024px) {
+            .games-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 24px;
+            }
+            .page-games {
+                padding: 32px 40px 40px 40px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .games-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            .page-games {
+                padding: 24px 20px 30px 20px;
+            }
+            .games-header h2 {
+                font-size: 28px;
+            }
+            .game-card .card-body h3 {
+                font-size: 18px;
+            }
+            .game-card .card-body p {
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-games {
+                padding: 20px 16px 24px 16px;
+            }
+            .games-header h2 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 独立第二页 · 我的游戏 -->
+    <div class="page-games">
+        <div class="games-header">
+            <h2>my games</h2>
+        </div>
+
+        <div class="games-grid">
+            <!-- florr -->
+            <a href="https://www.florr.io" target="_blank" class="game-card">
+                <div class="card-image">
+                    <img src="https://via.placeholder.com/400x250/f0f0f0/bbb?text=🎮+florr" alt="florr" />
+                    <div class="placeholder-img" style="display:none;">🎮 florr</div>
+                </div>
+                <div class="card-body">
+                    <h3>florr</h3>
+                    <p>玩的首个io游戏，现在已经退了，全都是回忆啊</p>
+                </div>
+            </a>
+
+            <!-- flowr -->
+            <a href="https://flowr.fun" target="_blank" class="game-card">
+                <div class="card-image">
+                    <img src="https://via.placeholder.com/400x250/f0f0f0/bbb?text=⚔️+flowr" alt="flowr" />
+                    <div class="placeholder-img" style="display:none;">⚔️ flowr</div>
+                </div>
+                <div class="card-body">
+                    <h3>flowr</h3>
+                    <p>florr的二创，本人偶尔会上线一下</p>
+                </div>
+            </a>
+
+            <!-- cave.io -->
+            <a href="https://www.ccw.site/detail/6677f22b0f21d949bfe1b99e?SubjectAreaGroupId=210&component=0&module=4" target="_blank" class="game-card">
+                <div class="card-image">
+                    <img src="https://via.placeholder.com/400x250/f0f0f0/bbb?text=⛏️+cave.io" alt="cave.io" />
+                    <div class="placeholder-img" style="display:none;">⛏️ cave.io</div>
+                </div>
+                <div class="card-body">
+                    <h3>cave.io</h3>
+                    <p>已经乱成啥了，很少上线了</p>
+                </div>
+            </a>
+
+            <!-- 红警网页 -->
+            <a href="https://staging.wangerhuoda.cn/" target="_blank" class="game-card">
+                <div class="card-image">
+                    <img src="https://via.placeholder.com/400x250/f0f0f0/bbb?text=🗡️+红警网页" alt="红警网页" />
+                    <div class="placeholder-img" style="display:none;">🗡️ 红警网页</div>
+                </div>
+                <div class="card-body">
+                    <h3>红警网页</h3>
+                    <p>教主推给我的，豪玩。</p>
+                </div>
+            </a>
+        </div>
+
+        <!-- 底部提示（轻量） -->
+        <div class="hint">↓ 滚动浏览 · 点击卡片跳转 ↓</div>
+    </div>
+
+    <script>
+        // 处理图片加载失败时显示占位（优雅降级）
+        document.querySelectorAll('.game-card .card-image').forEach(container => {
+            const img = container.querySelector('img');
+            const placeholder = container.querySelector('.placeholder-img');
+            if (img && placeholder) {
+                // 如果图片加载失败，显示占位
+                img.addEventListener('error', function() {
+                    img.style.display = 'none';
+                    placeholder.style.display = 'flex';
+                });
+                // 如果图片已经加载完成但宽度为0（比如空src），也显示占位
+                if (img.complete && img.naturalWidth === 0) {
+                    img.style.display = 'none';
+                    placeholder.style.display = 'flex';
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>
